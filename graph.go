@@ -674,24 +674,24 @@ func (g *Graph) ReplaceVertex(col string, key string, vertex interface{}) error 
 type Traversal struct {
 	graphName   string     `json:"graphName"`
 	StartVertex string     `json:"startVertex"`
-	Filter      string     `json:"filter"`
-	MinDepth    int        `json:"minDepth"`
-	MaxDepth    int        `json:"maxDepth"`
-	Visitor     string     `json:"visitor"`
-	Direction   string     `json:"direction"`
-	Init        string     `json:"init"`
-	Expander    string     `json:"expander"`
-	Sort        string     `json:"sort"`
-	Strategy    string     `json:"strategy"`
-	Order       string     `json:"order"`
-	ItemOrder   string     `json:"itemOrder"`
-	Unique      Uniqueness `json:"uniqueness"`
-	MaxIter     int        `json:"maxIterations"`
+	Filter      string     `json:"filter,omitempty"`
+	MinDepth    int        `json:"minDepth,omitempty"`
+	MaxDepth    int        `json:"maxDepth,omitempty"`
+	Visitor     string     `json:"visitor,omitempty"`
+	Direction   string     `json:"direction,omitempty"`
+	Init        string     `json:"init,omitempty"`
+	Expander    string     `json:"expander,omitempty"`
+	Sort        string     `json:"sort,omitempty"`
+	Strategy    string     `json:"strategy,omitempty"`
+	Order       string     `json:"order,omitempty"`
+	ItemOrder   string     `json:"itemOrder,omitempty"`
+	Unique      *Uniqueness `json:"uniqueness,omitempty"`
+	MaxIter     int        `json:"maxIterations,omitempty"`
 }
 
 type Uniqueness struct {
-	Edges    string `json:"edges"`
-	Vertices string `json:"vertices"`
+	Edges    string `json:"edges,omitempty"`
+	Vertices string `json:"vertices,omitempty"`
 }
 
 // Executes a traversal
