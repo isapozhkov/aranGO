@@ -697,7 +697,7 @@ type Uniqueness struct {
 // Executes a traversal
 // POST /_api/traversal
 func (g *Graph) Traverse(t *Traversal, r interface{}) error {
-	if g.Key == "" {
+	if g.Name == "" {
 		return errors.New("Invalid graph to travers")
 	}
 
