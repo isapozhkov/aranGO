@@ -701,6 +701,7 @@ func (g *Graph) Traverse(t *Traversal, r interface{}) error {
 		return errors.New("Invalid graph to travers")
 	}
 
+	t.graphName = g.Name
 	res, err := g.db.send("traversal", "", "POST", t, r, r)
 	if err != nil {
 		return err
