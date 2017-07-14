@@ -672,7 +672,7 @@ func (g *Graph) ReplaceVertex(col string, key string, vertex interface{}) error 
 }
 
 type Traversal struct {
-	graphName   string     `json:"graphName"`
+	GraphName   string     `json:"graphName"`
 	StartVertex string     `json:"startVertex"`
 	Filter      string     `json:"filter,omitempty"`
 	MinDepth    int        `json:"minDepth,omitempty"`
@@ -701,7 +701,7 @@ func (g *Graph) Traverse(t *Traversal, r interface{}) error {
 		return errors.New("Invalid graph to travers")
 	}
 
-	t.graphName = g.Name
+	t.GraphName = g.Name
 	res, err := g.db.send("traversal", "", "POST", t, r, r)
 	if err != nil {
 		return err
