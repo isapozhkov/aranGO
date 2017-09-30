@@ -1,10 +1,14 @@
 package aranGO
 
 import (
+	"crypto/tls"
 	"errors"
-	nap "github.com/diegogub/napping"
+	"net/http"
 	"net/url"
 	"regexp"
+	"time"
+
+	nap "github.com/diegogub/napping"
 )
 
 type Session struct {
@@ -30,13 +34,21 @@ type auxCurrentDB struct {
 }
 
 // Connects to Database
-func Connect(host, user, password string, log bool) (*Session, error) {
+func Connect(host, user, password string, log bool, tls *tls.Config) (*Session, error) {
 	var sess Session
 	var s nap.Session
 	var dbs Databases
 	var err error
 	var request string
 	s.Log = log
+	if tls != nil {
+		s.Client.Transport = &http.Transport{
+			MaxIdleConns:       100,
+			IdleConnTimeout:    30 * time.Second,
+			DisableCompression: true,
+			TLSClientConfig:    tls,
+		}
+	}
 	// default unsafe
 	s.UnsafeBasicAuth = true
 
